@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="UI.Main.WorkArea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI.Main"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <ToolBar.Resources>
+                <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}" />
+            </ToolBar.Resources>
+            
+            <Button x:Name="btnAddTabItem" Click="btnAddTabItem_Click" ToolTip="Ajouter un onglet" Width="32" Height="32">
+                <Image Source="icons/add.png" />
+            </Button>
+            
+            <Button x:Name="btnAddEntity" Click="btnAddEntity_Click" ToolTip="Ajouter une nouvelle entité." Width="32" Height="32">
+                
+            </Button>
+
+            <Button x:Name="btnGenerateTrees" Click="btnGenerateTrees_Click" ToolTip="Génération automatique de l'héritage" Width="32" Height="32">
+                <Image Source="icons/auto.png" />
+            </Button>
+
+            <Separator />
+
+            <RadioButton GroupName="group1" IsChecked="True" Width="32" Height="32" ToolTip="Mode sélection">
+                <Image Source="icons/arrow.jpg" />
+            </RadioButton>
+            
+            <RadioButton x:Name="tbRemove" GroupName="group1" Checked="tbRemove_Checked" Unchecked="ToggleButton_Unchecked" Width="32" Height="32" ToolTip="Mode suppression">
+                <Image Source="icons/delete.png" />
+            </RadioButton>
+
+            <RadioButton x:Name="tbChildMaker" GroupName="group1" Checked="tbChildMaker_Checked" Unchecked="ToggleButton_Unchecked" Width="32" Height="32" ToolTip="Mode héritage">
+                <Image Source="icons/link.png" />
+            </RadioButton>
+
+            <Separator />
+            <Button x:Name="btnGenerateFiles" Click="btnGenerateFiles_Click" ToolTip="Générer le DAO" Width="32" Height="32">
+                <Image Source="icons/genfiles.png" />
+            </Button>
+        </ToolBar>
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="lvEntities" ItemsSource="{Binding}"
+                      PreviewMouseLeftButtonDown="lvEntities_PreviewMouseLeftButtonDown"
+                      PreviewMouseMove="lvEntities_PreviewMouseMove">
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10" BorderThickness="1" 
+                                BorderBrush="Black">
+                            
+                            <TextBlock Text="{Binding Name}" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="20" TextTrimming="CharacterEllipsis" />
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <TabControl Grid.Column="1" x:Name="MainTabControl" />
+        </Grid>
+    </DockPanel>
+</UserControl>

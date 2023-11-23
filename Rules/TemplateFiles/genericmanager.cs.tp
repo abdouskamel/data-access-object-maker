@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Data.Common;
+
+public class GenericManager<T> where T:ICtorDataReader
+{
+	string mProvider;
+	public string Provider
+	{
+		get { return mProvider; }
+
+		set 
+		{
+			mProvider = value;
+			DbPF = DbProviderFactories.GetFactory(mProvider);
+		}
+	}
+
+	public string ConnectionString { get; set; }
+
+	public string TableName { get; set; }
+
+	public IList<T> Collection { get; set; }
+
+	public DbProviderFactory DbPF { get; protected set; }
+
+	public GenericManager(string Provider, string ConnectionString, string TableName)
+	{
+		this.Provider = Provider;
+		this.ConnectionString = ConnectionString;
+		this.TableName = TableName;
+	}
+
+	public GenericManager(string Provider, string ConnectionString, string TableName, IList<T> Collection) : base(Provider, ConnectionString, TableName)
+	{
+		this.Collection = Collection;
+	}
+}

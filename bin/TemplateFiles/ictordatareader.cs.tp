@@ -1,0 +1,7 @@
+	namespace {0}
+	{{
+		interface {1}
+		{{
+			void {2}(IDataReader reader);
+		}}
+	}}

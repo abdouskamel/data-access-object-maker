@@ -1,0 +1,27 @@
+﻿<Window x:Class="UI.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI.Main"
+        mc:Ignorable="d"
+        Title=" - DAOMaker" WindowState="Maximized">
+
+    <DockPanel x:Name="MainDock" LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Fichier">
+                <MenuItem x:Name="miOpenNewSession" Header="Ouvrir" Click="miOpenNewSession_Click" />
+                <MenuItem x:Name="miSaveSession" Header="Enregistrer" Click="miSaveSession_Click" />
+                <MenuItem x:Name="miSaveSessionAs" Header="Enregistrer sous..." Click="miSaveSessionAs_Click" />
+                
+                <Separator />
+                <MenuItem x:Name="miExitSession" Header="Fermer la session" Click="miExitSession_Click" />
+                <MenuItem x:Name="miExitApp" Header="Quitter" Click="miExitApp_Click" />
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+
+        </StatusBar>
+    </DockPanel>
+</Window>
